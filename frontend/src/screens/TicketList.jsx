@@ -5,8 +5,7 @@ import { Spinner } from "react-bootstrap";
 import SortFilterBar from "../components/SortFilterBar";
 import { toast } from "react-toastify";
 
-const TicketList = () => {
-  const [isLoading, setIsLoading] = useState(false);
+const TicketList = ({ loading, startLoading, stopLoading }) => {
   const [isButtonLoading, setIsButtonLoading] = useState(false);
   const [tickets, setTickets] = useState([]);
   const [severityFilter, setSeverityFilter] = useState("all");
@@ -40,15 +39,14 @@ const TicketList = () => {
   };
 
   const fetchTickets = useCallback(async () => {
-    setIsLoading(true);
+    startLoading();
     const api = axios.create({
       baseURL: process.env.REACT_APP_API_URL,
     });
     const url = `/api/support-tickets?sort=${sortBy}&statusFilter=${statusFilter}&severityFilter=${severityFilter}&typeFilter=${typeFilter}`;
-    console.log(process.env.REACT_APP_API_URL);
     const response = await api.get(url);
     setTickets(response.data);
-    setIsLoading(false);
+    stopLoading();
   }, [severityFilter, typeFilter, statusFilter, sortBy]);
 
   useEffect(() => {
@@ -58,8 +56,27 @@ const TicketList = () => {
   return (
     <>
       <SortFilterBar setSortFilter={setSortFilter}></SortFilterBar>
-      {isLoading ? (
-        <Spinner animation="border" />
+      {loading ? (
+        <>
+          <div
+            style={{
+              border: "1px solid red",
+              borderRadius: "0.65rem",
+              padding: "7px",
+              margin: "2px",
+            }}
+          >
+            <p
+              style={{
+                margin: "0px",
+              }}
+            >
+              Please bear with us, Our backend service requires a short spin-up
+              time of few seconds (~1min).
+            </p>
+          </div>
+          <Spinner animation="border" />
+        </>
       ) : (
         <Table striped bordered hover responsive className="table-sm">
           <thead>
