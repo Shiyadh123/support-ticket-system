@@ -1,3 +1,6 @@
+# Support Ticket Entry System
+![pic-share](./app-img.png)
+
 This project consists of a client-server application.
 
 ## Server
