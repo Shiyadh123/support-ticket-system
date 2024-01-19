@@ -14,6 +14,10 @@ dotenv.config();
 connectDB();
 app.use(bodyParser());
 
+app.get("/", (req, res) => {
+  res.send("API is working....................");
+});
+
 app.get("/api/support-tickets", getTickets);
 app.post("/api/support-tickets", createTicket);
 app.post("/api/support-agents", createAgent);
