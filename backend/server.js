@@ -8,8 +8,10 @@ import {
   getTickets,
   resolveTicket,
 } from "./controllers/ticketController.js";
+import cors from "cors";
 
 const app = express();
+app.use(cors());
 dotenv.config();
 connectDB();
 app.use(bodyParser());
@@ -23,7 +25,7 @@ app.post("/api/support-tickets", createTicket);
 app.post("/api/support-agents", createAgent);
 app.patch("/api/resolve-ticket", resolveTicket);
 
-app.listen(process.env.PORT, () =>
+app.listen(process.env.PORT || 3300, () =>
   console.log(
     `Server running in ${process.env.NODE_ENV} mode on port ${process.env.PORT}`
   )
