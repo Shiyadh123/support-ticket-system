@@ -19,7 +19,7 @@ This project consists of a client-server application.
 
 1. Navigate to the `frontend` folder: `cd frontend`
 2. Install dependencies: `npm install`
-3. Create a `.env` file in the `frontend` folder and configure the environment variable: `API_URL` (Backend URL)
+3. Create a `.env` file in the `frontend` folder and configure the environment variable: `REACT_APP_API_URL` (Backend URL)
 
 ### Usage
 
