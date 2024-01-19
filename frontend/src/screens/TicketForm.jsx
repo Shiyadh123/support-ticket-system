@@ -32,7 +32,7 @@ const TicketForm = () => {
   const handleFormSubmit = async (values, onSubmitProps) => {
     setIsLoading(true);
     const api = axios.create({
-      baseURL: process.env.API_URL,
+      baseURL: process.env.REACT_APP_API_URL,
     });
     const response = await api.post(`/api/support-tickets`, {
       topic: values.topic,

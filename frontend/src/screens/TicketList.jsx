@@ -29,7 +29,7 @@ const TicketList = () => {
   const handleResolve = async (ticketId) => {
     setIsButtonLoading(true);
     const api = axios.create({
-      baseURL: process.env.API_URL,
+      baseURL: process.env.REACT_APP_API_URL,
     });
     const response = await api.patch(`/api/resolve-ticket`, {
       _id: ticketId,
@@ -42,9 +42,10 @@ const TicketList = () => {
   const fetchTickets = useCallback(async () => {
     setIsLoading(true);
     const api = axios.create({
-      baseURL: process.env.API_URL,
+      baseURL: process.env.REACT_APP_API_URL,
     });
     const url = `/api/support-tickets?sort=${sortBy}&statusFilter=${statusFilter}&severityFilter=${severityFilter}&typeFilter=${typeFilter}`;
+    console.log(process.env.REACT_APP_API_URL);
     const response = await api.get(url);
     setTickets(response.data);
     setIsLoading(false);

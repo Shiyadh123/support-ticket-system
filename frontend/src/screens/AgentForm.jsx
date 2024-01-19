@@ -29,7 +29,7 @@ const AgentForm = () => {
   const handleFormSubmit = async (values, onSubmitProps) => {
     setIsLoading(true);
     const api = axios.create({
-      baseURL: process.env.API_URL,
+      baseURL: process.env.REACT_APP_API_URL,
     });
     const response = await api.post(`/api/support-agents`, {
       name: values.name,
