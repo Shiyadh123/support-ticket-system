@@ -11,7 +11,7 @@ const SortFilterBar = ({ setSortFilter }) => {
             aria-label="Sort-By"
             onChange={(e) => setSortFilter("sort", e.target.value)}
           >
-            <option value={"all"}>All</option>
+            <option value={"all"}>None</option>
             <option value="Asc Date Created">Asc-Date Created</option>
             <option value="Des Date Created">Des-Date Created</option>
             <option value="Asc Date Resolved">Asc-Date Resolved</option>
